@@ -1,0 +1,1369 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #000000;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(138, 43, 226, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(0, 191, 255, 0.25) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(75, 0, 130, 0.2) 0%, transparent 60%),
+                linear-gradient(135deg, #000000 0%, #0a0a1a 25%, #1a0a2e 50%, #16213e 75%, #000000 100%);
+            opacity: 1;
+            animation: nebulaShift 20s ease-in-out infinite;
+        }
+
+        @keyframes nebulaShift {
+            0%, 100% { 
+                background: 
+                    radial-gradient(ellipse at 20% 30%, rgba(138, 43, 226, 0.3) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 70%, rgba(0, 191, 255, 0.25) 0%, transparent 50%),
+                    radial-gradient(ellipse at 50% 50%, rgba(75, 0, 130, 0.2) 0%, transparent 60%),
+                    linear-gradient(135deg, #000000 0%, #0a0a1a 25%, #1a0a2e 50%, #16213e 75%, #000000 100%);
+            }
+            50% { 
+                background: 
+                    radial-gradient(ellipse at 30% 40%, rgba(138, 43, 226, 0.35) 0%, transparent 50%),
+                    radial-gradient(ellipse at 70% 60%, rgba(0, 191, 255, 0.3) 0%, transparent 50%),
+                    radial-gradient(ellipse at 50% 50%, rgba(75, 0, 130, 0.25) 0%, transparent 60%),
+                    linear-gradient(135deg, #000000 0%, #0a0a1a 25%, #1a0a2e 50%, #16213e 75%, #000000 100%);
+            }
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, white, transparent),
+                radial-gradient(2px 2px at 60% 70%, white, transparent),
+                radial-gradient(1px 1px at 50% 50%, white, transparent),
+                radial-gradient(1px 1px at 80% 10%, white, transparent),
+                radial-gradient(2px 2px at 90% 40%, white, transparent),
+                radial-gradient(1px 1px at 30% 80%, white, transparent),
+                radial-gradient(1px 1px at 10% 60%, white, transparent),
+                radial-gradient(2px 2px at 40% 20%, white, transparent);
+            background-size: 200% 200%;
+            background-position: 0% 0%, 100% 0%, 50% 50%, 0% 100%, 100% 100%, 50% 0%, 0% 50%, 100% 50%;
+            animation: starsMove 30s linear infinite;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        @keyframes starsMove {
+            0% { background-position: 0% 0%, 100% 0%, 50% 50%, 0% 100%, 100% 100%, 50% 0%, 0% 50%, 100% 50%; }
+            100% { background-position: 100% 100%, 0% 100%, 50% 50%, 100% 0%, 0% 0%, 50% 100%, 100% 50%, 0% 50%; }
+        }
+
+        .space-bodies {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .space-body {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        /* Планета 1 - Фиолетовая */
+        .planet-1 {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, 
+                rgba(138, 43, 226, 1) 0%,
+                rgba(75, 0, 130, 0.9) 40%,
+                rgba(25, 25, 112, 0.8) 100%);
+            box-shadow: 
+                0 0 50px rgba(138, 43, 226, 0.9),
+                0 0 100px rgba(138, 43, 226, 0.5),
+                inset -20px -20px 40px rgba(0, 0, 0, 0.5),
+                inset 10px 10px 20px rgba(255, 255, 255, 0.2);
+            animation: planetFloat1 50s infinite ease-in-out;
+            top: 15%;
+            left: -150px;
+        }
+
+        @keyframes planetFloat1 {
+            0% { transform: translateX(0) translateY(0) rotate(0deg); }
+            25% { transform: translateX(calc(100vw + 150px)) translateY(-50px) rotate(90deg); }
+            50% { transform: translateX(calc(100vw + 150px)) translateY(50px) rotate(180deg); }
+            75% { transform: translateX(0) translateY(30px) rotate(270deg); }
+            100% { transform: translateX(0) translateY(0) rotate(360deg); }
+        }
+
+        /* Планета 2 - Голубая */
+        .planet-2 {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 25% 25%, 
+                rgba(0, 191, 255, 1) 0%,
+                rgba(0, 100, 200, 0.9) 50%,
+                rgba(0, 50, 100, 0.8) 100%);
+            box-shadow: 
+                0 0 40px rgba(0, 191, 255, 0.9),
+                0 0 80px rgba(0, 191, 255, 0.5),
+                inset -15px -15px 30px rgba(0, 0, 0, 0.5),
+                inset 8px 8px 15px rgba(255, 255, 255, 0.2);
+            animation: planetFloat2 60s infinite ease-in-out;
+            top: 60%;
+            right: -100px;
+            animation-delay: 3s;
+        }
+
+        @keyframes planetFloat2 {
+            0% { transform: translateX(0) translateY(0) rotate(0deg); }
+            33% { transform: translateX(calc(-100vw - 100px)) translateY(-80px) rotate(120deg); }
+            66% { transform: translateX(calc(-100vw - 100px)) translateY(80px) rotate(240deg); }
+            100% { transform: translateX(0) translateY(0) rotate(360deg); }
+        }
+
+        /* Планета 3 - Оранжевая */
+        .planet-3 {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, 
+                rgba(255, 140, 0, 1) 0%,
+                rgba(255, 69, 0, 0.9) 40%,
+                rgba(139, 69, 19, 0.8) 100%);
+            box-shadow: 
+                0 0 45px rgba(255, 140, 0, 0.9),
+                0 0 90px rgba(255, 140, 0, 0.5),
+                inset -18px -18px 35px rgba(0, 0, 0, 0.5),
+                inset 9px 9px 18px rgba(255, 255, 255, 0.2);
+            animation: planetFloat3 35s infinite ease-in-out;
+            top: 40%;
+            left: -120px;
+            animation-delay: 5s;
+        }
+
+        @keyframes planetFloat3 {
+            0% { transform: translateX(0) translateY(0) rotate(0deg); }
+            20% { transform: translateX(calc(100vw + 120px)) translateY(-100px) rotate(72deg); }
+            40% { transform: translateX(calc(100vw + 120px)) translateY(100px) rotate(144deg); }
+            60% { transform: translateX(calc(100vw + 120px)) translateY(-50px) rotate(216deg); }
+            80% { transform: translateX(0) translateY(50px) rotate(288deg); }
+            100% { transform: translateX(0) translateY(0) rotate(360deg); }
+        }
+
+        /* Астероид 1 */
+        .asteroid-1 {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, 
+                rgba(150, 150, 150, 0.9) 0%,
+                rgba(100, 100, 100, 0.8) 100%);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            box-shadow: 
+                0 0 25px rgba(200, 200, 200, 0.7),
+                0 0 50px rgba(150, 150, 150, 0.4),
+                inset -5px -5px 10px rgba(0, 0, 0, 0.6);
+            animation: asteroidFloat1 40s infinite linear;
+            top: 25%;
+            left: -50px;
+        }
+
+        @keyframes asteroidFloat1 {
+            0% { transform: translateX(0) translateY(0) rotate(0deg); }
+            100% { transform: translateX(calc(100vw + 50px)) translateY(200px) rotate(720deg); }
+        }
+
+        /* Астероид 2 */
+        .asteroid-2 {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, 
+                rgba(130, 130, 130, 0.9) 0%,
+                rgba(80, 80, 80, 0.8) 100%);
+            border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
+            box-shadow: 
+                0 0 20px rgba(180, 180, 180, 0.7),
+                0 0 40px rgba(130, 130, 130, 0.4),
+                inset -4px -4px 8px rgba(0, 0, 0, 0.6);
+            animation: asteroidFloat2 18s infinite linear;
+            top: 70%;
+            right: -45px;
+            animation-delay: 2s;
+        }
+
+        @keyframes asteroidFloat2 {
+            0% { transform: translateX(0) translateY(0) rotate(0deg); }
+            100% { transform: translateX(calc(-100vw - 45px)) translateY(-150px) rotate(-720deg); }
+        }
+
+        /* Астероид 3 */
+        .asteroid-3 {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, 
+                rgba(140, 140, 140, 0.9) 0%,
+                rgba(90, 90, 90, 0.8) 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            box-shadow: 
+                0 0 18px rgba(170, 170, 170, 0.7),
+                0 0 35px rgba(140, 140, 140, 0.4),
+                inset -3px -3px 6px rgba(0, 0, 0, 0.6);
+            animation: asteroidFloat3 22s infinite linear;
+            top: 50%;
+            left: -40px;
+            animation-delay: 4s;
+        }
+
+        @keyframes asteroidFloat3 {
+            0% { transform: translateX(0) translateY(0) rotate(0deg); }
+            100% { transform: translateX(calc(100vw + 40px)) translateY(-100px) rotate(540deg); }
+        }
+
+        /* Комета */
+        .comet {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            top: 10%;
+            left: -80px;
+            animation: cometFly 15s infinite linear;
+            animation-delay: 1s;
+        }
+
+        .comet::before {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: radial-gradient(circle, 
+                rgba(255, 255, 255, 1) 0%,
+                rgba(0, 191, 255, 0.9) 40%,
+                rgba(0, 100, 200, 0.7) 70%,
+                transparent 100%);
+            box-shadow: 
+                0 0 30px rgba(0, 191, 255, 1),
+                0 0 60px rgba(0, 191, 255, 0.6);
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+
+        .comet::after {
+            content: '';
+            position: absolute;
+            width: 250px;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(0, 191, 255, 0.8) 20%,
+                rgba(255, 255, 255, 0.6) 40%,
+                rgba(0, 191, 255, 0.4) 60%,
+                transparent 100%);
+            top: 50%;
+            left: 30px;
+            transform: translateY(-50%);
+            box-shadow: 
+                0 0 20px rgba(0, 191, 255, 0.8),
+                0 0 40px rgba(0, 191, 255, 0.4);
+        }
+
+        @keyframes cometFly {
+            0% { transform: translateX(0) translateY(0) rotate(0deg); }
+            100% { transform: translateX(calc(100vw + 200px)) translateY(calc(100vh + 200px)) rotate(180deg); }
+        }
+
+        /* Маленькая планета */
+        .planet-small {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, 
+                rgba(255, 0, 255, 1) 0%,
+                rgba(138, 43, 226, 0.9) 50%,
+                rgba(75, 0, 130, 0.8) 100%);
+            box-shadow: 
+                0 0 35px rgba(255, 0, 255, 0.9),
+                0 0 70px rgba(255, 0, 255, 0.5),
+                inset -10px -10px 20px rgba(0, 0, 0, 0.5),
+                inset 5px 5px 10px rgba(255, 255, 255, 0.2);
+            animation: planetSmallFloat 56s infinite ease-in-out;
+            top: 80%;
+            right: -80px;
+            animation-delay: 7s;
+        }
+
+        @keyframes planetSmallFloat {
+            0% { transform: translateX(0) translateY(0) rotate(0deg); }
+            50% { transform: translateX(calc(-100vw - 80px)) translateY(-150px) rotate(180deg); }
+            100% { transform: translateX(0) translateY(0) rotate(360deg); }
+        }
+
+        /* Пульсирующие космические тела */
+        @keyframes planetPulse {
+            0%, 100% { 
+                transform: scale(1); 
+                opacity: 0.85; 
+            }
+            50% { 
+                transform: scale(1.15); 
+                opacity: 1; 
+            }
+        }
+
+        @keyframes ringRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Планета 1 - Фиолетовая с кольцами */
+        .pulsing-planet-1 {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, 
+                rgba(138, 43, 226, 1) 0%,
+                rgba(75, 0, 130, 0.9) 50%,
+                rgba(25, 25, 112, 0.8) 100%);
+            box-shadow: 
+                0 0 40px rgba(138, 43, 226, 1),
+                0 0 80px rgba(138, 43, 226, 0.6),
+                inset -15px -15px 30px rgba(0, 0, 0, 0.5),
+                inset 8px 8px 15px rgba(255, 255, 255, 0.3);
+            position: absolute;
+            top: 18%;
+            left: 12%;
+            animation: planetPulse 4s ease-in-out infinite;
+        }
+
+        .pulsing-planet-1::before {
+            content: '';
+            position: absolute;
+            width: 140px;
+            height: 8px;
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(138, 43, 226, 0.6) 20%,
+                rgba(255, 255, 255, 0.4) 50%,
+                rgba(138, 43, 226, 0.6) 80%,
+                transparent 100%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            box-shadow: 
+                0 0 20px rgba(138, 43, 226, 0.5),
+                inset 0 0 10px rgba(255, 255, 255, 0.2);
+            animation: ringRotate 20s linear infinite;
+        }
+
+        .pulsing-planet-1::after {
+            content: '';
+            position: absolute;
+            width: 160px;
+            height: 6px;
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(138, 43, 226, 0.4) 20%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(138, 43, 226, 0.4) 80%,
+                transparent 100%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
+            animation: ringRotate 25s linear infinite reverse;
+        }
+
+        /* Планета 2 - Голубая с кольцами */
+        .pulsing-planet-2 {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 25% 25%, 
+                rgba(0, 191, 255, 1) 0%,
+                rgba(0, 100, 200, 0.9) 50%,
+                rgba(0, 50, 100, 0.8) 100%);
+            box-shadow: 
+                0 0 35px rgba(0, 191, 255, 1),
+                0 0 70px rgba(0, 191, 255, 0.6),
+                inset -12px -12px 25px rgba(0, 0, 0, 0.5),
+                inset 6px 6px 12px rgba(255, 255, 255, 0.3);
+            position: absolute;
+            top: 72%;
+            right: 18%;
+            animation: planetPulse 5s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        .pulsing-planet-2::before {
+            content: '';
+            position: absolute;
+            width: 130px;
+            height: 7px;
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(0, 191, 255, 0.6) 20%,
+                rgba(255, 255, 255, 0.4) 50%,
+                rgba(0, 191, 255, 0.6) 80%,
+                transparent 100%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(30deg);
+            box-shadow: 
+                0 0 18px rgba(0, 191, 255, 0.5),
+                inset 0 0 8px rgba(255, 255, 255, 0.2);
+            animation: ringRotate 18s linear infinite;
+        }
+
+        .pulsing-planet-2::after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(0, 191, 255, 0.4) 20%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(0, 191, 255, 0.4) 80%,
+                transparent 100%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-30deg);
+            box-shadow: 0 0 12px rgba(0, 191, 255, 0.4);
+            animation: ringRotate 22s linear infinite reverse;
+        }
+
+        /* Планета 3 - Оранжевая без колец */
+        .pulsing-planet-3 {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, 
+                rgba(255, 140, 0, 1) 0%,
+                rgba(255, 69, 0, 0.9) 40%,
+                rgba(139, 69, 19, 0.8) 100%);
+            box-shadow: 
+                0 0 40px rgba(255, 140, 0, 1),
+                0 0 80px rgba(255, 140, 0, 0.6),
+                inset -12px -12px 25px rgba(0, 0, 0, 0.5),
+                inset 6px 6px 12px rgba(255, 255, 255, 0.3);
+            position: absolute;
+            top: 55%;
+            left: 8%;
+            animation: planetPulse 4.5s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+
+        /* Планета 4 - Розовая с кольцами */
+        .pulsing-planet-4 {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, 
+                rgba(255, 0, 255, 1) 0%,
+                rgba(138, 43, 226, 0.9) 50%,
+                rgba(75, 0, 130, 0.8) 100%);
+            box-shadow: 
+                0 0 38px rgba(255, 0, 255, 1),
+                0 0 75px rgba(255, 0, 255, 0.6),
+                inset -14px -14px 28px rgba(0, 0, 0, 0.5),
+                inset 7px 7px 14px rgba(255, 255, 255, 0.3);
+            position: absolute;
+            top: 35%;
+            right: 15%;
+            animation: planetPulse 5.5s ease-in-out infinite;
+            animation-delay: 1.5s;
+        }
+
+        .pulsing-planet-4::before {
+            content: '';
+            position: absolute;
+            width: 135px;
+            height: 7px;
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(255, 0, 255, 0.6) 20%,
+                rgba(255, 255, 255, 0.4) 50%,
+                rgba(255, 0, 255, 0.6) 80%,
+                transparent 100%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(60deg);
+            box-shadow: 
+                0 0 20px rgba(255, 0, 255, 0.5),
+                inset 0 0 10px rgba(255, 255, 255, 0.2);
+            animation: ringRotate 24s linear infinite;
+        }
+
+        .pulsing-planet-4::after {
+            content: '';
+            position: absolute;
+            width: 155px;
+            height: 5px;
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(255, 0, 255, 0.4) 20%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(255, 0, 255, 0.4) 80%,
+                transparent 100%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-60deg);
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
+            animation: ringRotate 28s linear infinite reverse;
+        }
+
+        /* Планета 5 - Золотая без колец */
+        .pulsing-planet-5 {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, 
+                rgba(255, 215, 0, 1) 0%,
+                rgba(255, 165, 0, 0.9) 50%,
+                rgba(255, 140, 0, 0.8) 100%);
+            box-shadow: 
+                0 0 35px rgba(255, 215, 0, 1),
+                0 0 70px rgba(255, 215, 0, 0.6),
+                inset -10px -10px 20px rgba(0, 0, 0, 0.5),
+                inset 5px 5px 10px rgba(255, 255, 255, 0.3);
+            position: absolute;
+            top: 88%;
+            left: 25%;
+            animation: planetPulse 4.2s ease-in-out infinite;
+            animation-delay: 0.8s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .game-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            z-index: 3;
+        }
+
+        .top-progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.4) 0%, 
+                rgba(20, 20, 40, 0.5) 50%, 
+                rgba(0, 0, 0, 0.4) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+            z-index: 20;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        .top-progress-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            min-width: 2px;
+            background: linear-gradient(90deg, 
+                rgba(0, 255, 255, 0.9) 0%, 
+                rgba(255, 0, 255, 0.9) 25%,
+                rgba(0, 255, 255, 0.9) 50%,
+                rgba(255, 0, 255, 0.9) 75%,
+                rgba(0, 255, 255, 0.9) 100%);
+            background-size: 200% 100%;
+            box-shadow: 
+                0 0 10px rgba(0, 255, 255, 0.8),
+                0 0 20px rgba(255, 0, 255, 0.6),
+                inset 0 0 10px rgba(255, 255, 255, 0.4);
+            animation: topProgressFlow 2s linear infinite;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1;
+        }
+
+        .top-progress-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(0, 255, 255, 0.2) 50%,
+                transparent 100%);
+            animation: topProgressGlow 2s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        @keyframes topProgressFlow {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 200% 0%; }
+        }
+
+        @keyframes topProgressGlow {
+            0%, 100% { 
+                opacity: 0.3;
+                transform: translateX(-100%);
+            }
+            50% { 
+                opacity: 0.8;
+                transform: translateX(100%);
+            }
+        }
+
+        h1 {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) perspective(500px) rotateX(5deg);
+            color: #00ffff;
+            font-size: 2.5em;
+            font-weight: 900;
+            text-shadow: 
+                0 0 10px rgba(0, 255, 255, 0.8),
+                0 0 20px rgba(0, 255, 255, 0.6),
+                0 0 30px rgba(0, 255, 255, 0.4),
+                0 0 40px rgba(138, 43, 226, 0.5),
+                0 4px 8px rgba(0, 0, 0, 0.8),
+                0 8px 16px rgba(0, 0, 0, 0.6);
+            z-index: 10;
+            animation: fadeIn 1s ease-out, titleGlow 3s ease-in-out infinite;
+            background: linear-gradient(135deg, 
+                rgba(0, 191, 255, 0.15) 0%, 
+                rgba(138, 43, 226, 0.2) 50%, 
+                rgba(0, 191, 255, 0.15) 100%);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 2px solid rgba(0, 255, 255, 0.4);
+            border-top: 2px solid rgba(255, 255, 255, 0.6);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+            padding: 15px 30px;
+            border-radius: 20px;
+            box-shadow: 
+                0 0 20px rgba(0, 255, 255, 0.4),
+                0 0 40px rgba(138, 43, 226, 0.3),
+                0 10px 30px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+            transform-style: preserve-3d;
+            letter-spacing: 2px;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        h1.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 10px rgba(0, 255, 255, 0.8),
+                    0 0 20px rgba(0, 255, 255, 0.6),
+                    0 0 30px rgba(0, 255, 255, 0.4),
+                    0 0 40px rgba(138, 43, 226, 0.5),
+                    0 4px 8px rgba(0, 0, 0, 0.8);
+            }
+            50% { 
+                text-shadow: 
+                    0 0 15px rgba(0, 255, 255, 1),
+                    0 0 30px rgba(0, 255, 255, 0.8),
+                    0 0 45px rgba(0, 255, 255, 0.6),
+                    0 0 60px rgba(138, 43, 226, 0.7),
+                    0 4px 8px rgba(0, 0, 0, 0.8);
+            }
+        }
+
+        .score {
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%) perspective(500px) rotateX(5deg);
+            font-size: 1.5em;
+            color: #ff00ff;
+            font-weight: 800;
+            text-shadow: 
+                0 0 10px rgba(255, 0, 255, 0.8),
+                0 0 20px rgba(255, 0, 255, 0.6),
+                0 0 30px rgba(255, 0, 255, 0.4),
+                0 2px 4px rgba(0, 0, 0, 0.8);
+            z-index: 10;
+            background: linear-gradient(135deg, 
+                rgba(255, 0, 255, 0.15) 0%, 
+                rgba(138, 43, 226, 0.2) 50%, 
+                rgba(0, 191, 255, 0.15) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 0, 255, 0.4);
+            border-top: 2px solid rgba(255, 255, 255, 0.5);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+            padding: 12px 24px;
+            border-radius: 16px;
+            box-shadow: 
+                0 0 20px rgba(255, 0, 255, 0.4),
+                0 0 40px rgba(138, 43, 226, 0.3),
+                0 10px 30px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+            transform-style: preserve-3d;
+            letter-spacing: 1px;
+            animation: scoreGlow 2s ease-in-out infinite;
+        }
+
+        /* Окно максимального счета */
+        .high-score-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, 
+                rgba(255, 215, 0, 0.15) 0%, 
+                rgba(255, 165, 0, 0.2) 50%, 
+                rgba(255, 140, 0, 0.15) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            border-top: 2px solid rgba(255, 255, 255, 0.5);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+            padding: 12px 20px;
+            border-radius: 16px;
+            z-index: 10;
+            box-shadow: 
+                0 0 20px rgba(255, 215, 0, 0.4),
+                0 0 40px rgba(255, 165, 0, 0.3),
+                0 8px 20px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+            transform-style: preserve-3d;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .high-score-label {
+            font-size: 0.85em;
+            color: #ffd700;
+            font-weight: 700;
+            text-shadow: 
+                0 0 8px rgba(255, 215, 0, 0.6),
+                0 0 16px rgba(255, 215, 0, 0.4),
+                0 2px 4px rgba(0, 0, 0, 0.8);
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .high-score-value {
+            font-size: 1.8em;
+            color: #ffd700;
+            font-weight: 900;
+            text-shadow: 
+                0 0 10px rgba(255, 215, 0, 0.8),
+                0 0 20px rgba(255, 215, 0, 0.6),
+                0 0 30px rgba(255, 215, 0, 0.4),
+                0 2px 4px rgba(0, 0, 0, 0.8);
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .high-score-value.new-record {
+            animation: newRecordPulse 0.5s ease-in-out;
+            color: #ffff00;
+            text-shadow: 
+                0 0 15px rgba(255, 255, 0, 1),
+                0 0 30px rgba(255, 215, 0, 0.8),
+                0 0 45px rgba(255, 215, 0, 0.6),
+                0 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        @keyframes newRecordPulse {
+            0%, 100% { 
+                transform: scale(1);
+            }
+            50% { 
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes scoreGlow {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 10px rgba(255, 0, 255, 0.8),
+                    0 0 20px rgba(255, 0, 255, 0.6),
+                    0 0 30px rgba(255, 0, 255, 0.4);
+            }
+            50% { 
+                text-shadow: 
+                    0 0 15px rgba(255, 0, 255, 1),
+                    0 0 30px rgba(255, 0, 255, 0.8),
+                    0 0 45px rgba(255, 0, 255, 0.6);
+            }
+        }
+
+        .level-container {
+            position: absolute;
+            top: 160px;
+            left: 50%;
+            transform: translateX(-50%) perspective(500px) rotateX(5deg);
+            z-index: 20;
+            width: 350px;
+            pointer-events: none;
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        .level-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 1.2em;
+            color: #00ffff;
+            font-weight: 700;
+            text-shadow: 
+                0 0 8px rgba(0, 255, 255, 0.6),
+                0 0 16px rgba(0, 255, 255, 0.4),
+                0 2px 4px rgba(0, 0, 0, 0.8);
+            letter-spacing: 1px;
+        }
+
+        .level-label {
+            opacity: 0.9;
+        }
+
+        .level-value {
+            color: #ffff00;
+            text-shadow: 
+                0 0 10px rgba(255, 255, 0, 0.8),
+                0 0 20px rgba(255, 255, 0, 0.6),
+                0 0 30px rgba(255, 255, 0, 0.4);
+            font-weight: 900;
+            font-size: 1.3em;
+        }
+
+        .level-progress-bar {
+            position: relative;
+            width: 100%;
+            height: 32px;
+            background: linear-gradient(135deg, 
+                rgba(0, 191, 255, 0.2) 0%, 
+                rgba(138, 43, 226, 0.25) 50%, 
+                rgba(0, 191, 255, 0.2) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid rgba(0, 255, 255, 0.5);
+            border-top: 2px solid rgba(255, 255, 255, 0.6);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 
+                0 0 20px rgba(0, 255, 255, 0.4),
+                0 0 40px rgba(138, 43, 226, 0.3),
+                0 8px 20px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .level-progress-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            min-width: 2px;
+            background: linear-gradient(90deg, 
+                rgba(0, 255, 255, 0.9) 0%, 
+                rgba(255, 0, 255, 0.9) 50%,
+                rgba(0, 255, 255, 0.9) 100%);
+            background-size: 200% 100%;
+            box-shadow: 
+                0 0 10px rgba(0, 255, 255, 0.8),
+                0 0 20px rgba(255, 0, 255, 0.6),
+                inset 0 0 10px rgba(255, 255, 255, 0.4);
+            animation: progressGlow 2s ease-in-out infinite, progressFlow 3s linear infinite;
+            transition: width 0.3s ease-out;
+            border-radius: 14px;
+            z-index: 1;
+        }
+
+        @keyframes progressGlow {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 10px rgba(0, 255, 255, 0.6),
+                    0 0 20px rgba(255, 0, 255, 0.4),
+                    inset 0 0 10px rgba(255, 255, 255, 0.3);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 15px rgba(0, 255, 255, 0.8),
+                    0 0 30px rgba(255, 0, 255, 0.6),
+                    inset 0 0 15px rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        @keyframes progressFlow {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 200% 0%; }
+        }
+
+        .level-progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.85em;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 
+                0 0 8px rgba(255, 255, 255, 0.8),
+                0 0 16px rgba(0, 255, 255, 0.6),
+                0 2px 4px rgba(0, 0, 0, 0.8);
+            letter-spacing: 1px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        canvas {
+            width: 100vw;
+            height: 100vh;
+            display: block;
+            border: none;
+            position: relative;
+            z-index: 1;
+            background: transparent;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            padding-top: 30px; /* Дополнительный отступ сверху для крестика */
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .controls.hidden {
+            opacity: 0;
+            transform: translateX(-50%) translateY(20px);
+            pointer-events: none;
+        }
+
+        .close-controls-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            z-index: 11;
+            padding: 0;
+            margin: 0;
+        }
+
+        .close-controls-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .close-controls-btn:active {
+            transform: scale(0.95);
+        }
+
+        .game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) perspective(500px) rotateX(5deg);
+            background: linear-gradient(135deg, 
+                rgba(0, 191, 255, 0.15) 0%, 
+                rgba(138, 43, 226, 0.2) 50%, 
+                rgba(0, 191, 255, 0.15) 100%);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 2px solid rgba(0, 255, 255, 0.4);
+            border-top: 2px solid rgba(255, 255, 255, 0.6);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+            color: #00ffff;
+            padding: 40px 50px;
+            border-radius: 20px;
+            display: none;
+            text-align: center;
+            z-index: 100;
+            box-shadow: 
+                0 0 20px rgba(0, 255, 255, 0.4),
+                0 0 40px rgba(138, 43, 226, 0.3),
+                0 20px 50px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+            transform-style: preserve-3d;
+            animation: slideUp 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275), gameOverGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -40%) perspective(500px) rotateX(5deg);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) perspective(500px) rotateX(5deg);
+            }
+        }
+
+        @keyframes gameOverGlow {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 20px rgba(0, 255, 255, 0.4),
+                    0 0 40px rgba(138, 43, 226, 0.3),
+                    0 20px 50px rgba(0, 0, 0, 0.6),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 30px rgba(0, 255, 255, 0.6),
+                    0 0 60px rgba(138, 43, 226, 0.5),
+                    0 20px 50px rgba(0, 0, 0, 0.6),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        .game-over.show {
+            display: block;
+        }
+
+        /* Оверлей паузы */
+        .pause-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .pause-overlay.show {
+            display: flex;
+        }
+
+        .pause-content {
+            background: linear-gradient(135deg, 
+                rgba(0, 191, 255, 0.15) 0%, 
+                rgba(138, 43, 226, 0.2) 50%, 
+                rgba(0, 191, 255, 0.15) 100%);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 2px solid rgba(0, 255, 255, 0.4);
+            border-top: 2px solid rgba(255, 255, 255, 0.6);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+            color: #00ffff;
+            padding: 50px 60px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 
+                0 0 20px rgba(0, 255, 255, 0.4),
+                0 0 40px rgba(138, 43, 226, 0.3),
+                0 20px 50px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+            transform-style: preserve-3d;
+            animation: pauseGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes pauseGlow {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 20px rgba(0, 255, 255, 0.4),
+                    0 0 40px rgba(138, 43, 226, 0.3),
+                    0 20px 50px rgba(0, 0, 0, 0.6),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 30px rgba(0, 255, 255, 0.6),
+                    0 0 60px rgba(138, 43, 226, 0.5),
+                    0 20px 50px rgba(0, 0, 0, 0.6),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        .pause-content h2 {
+            margin-bottom: 20px;
+            font-size: 3em;
+            font-weight: 900;
+            color: #00ffff;
+            text-shadow: 
+                0 0 10px rgba(0, 255, 255, 0.8),
+                0 0 20px rgba(0, 255, 255, 0.6),
+                0 0 30px rgba(0, 255, 255, 0.4),
+                0 0 40px rgba(138, 43, 226, 0.5),
+                0 4px 8px rgba(0, 0, 0, 0.8),
+                0 8px 16px rgba(0, 0, 0, 0.6);
+            letter-spacing: 2px;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        .pause-content p {
+            font-size: 1.3em;
+            color: #00ffff;
+            text-shadow: 
+                0 0 8px rgba(0, 255, 255, 0.6),
+                0 0 16px rgba(0, 255, 255, 0.4),
+                0 2px 4px rgba(0, 0, 0, 0.8);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .game-over h2 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            font-weight: 900;
+            color: #00ffff;
+            text-shadow: 
+                0 0 10px rgba(0, 255, 255, 0.8),
+                0 0 20px rgba(0, 255, 255, 0.6),
+                0 0 30px rgba(0, 255, 255, 0.4),
+                0 0 40px rgba(138, 43, 226, 0.5),
+                0 4px 8px rgba(0, 0, 0, 0.8),
+                0 8px 16px rgba(0, 0, 0, 0.6);
+            letter-spacing: 2px;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        .game-over p {
+            font-size: 1.3em;
+            color: #00ffff;
+            margin-bottom: 30px;
+            text-shadow: 
+                0 0 8px rgba(0, 255, 255, 0.6),
+                0 0 16px rgba(0, 255, 255, 0.4),
+                0 2px 4px rgba(0, 0, 0, 0.8);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .game-over #finalScore {
+            color: #ff00ff;
+            text-shadow: 
+                0 0 10px rgba(255, 0, 255, 0.8),
+                0 0 20px rgba(255, 0, 255, 0.6),
+                0 0 30px rgba(255, 0, 255, 0.4);
+            font-weight: 900;
+        }
+
+        .game-over button {
+            background: linear-gradient(135deg, 
+                rgba(0, 191, 255, 0.2) 0%, 
+                rgba(138, 43, 226, 0.25) 50%, 
+                rgba(0, 191, 255, 0.2) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(0, 255, 255, 0.4);
+            border-top: 2px solid rgba(255, 255, 255, 0.5);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+            color: #00ffff;
+            padding: 15px 35px;
+            font-size: 1.2em;
+            font-weight: 700;
+            border-radius: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.25s;
+            text-shadow: 
+                0 0 8px rgba(0, 255, 255, 0.6),
+                0 0 16px rgba(0, 255, 255, 0.4);
+            letter-spacing: 1px;
+            box-shadow: 
+                0 0 15px rgba(0, 255, 255, 0.3),
+                0 0 30px rgba(138, 43, 226, 0.2),
+                0 6px 20px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .game-over button:hover {
+            background: linear-gradient(135deg, 
+                rgba(0, 191, 255, 0.3) 0%, 
+                rgba(138, 43, 226, 0.35) 50%, 
+                rgba(0, 191, 255, 0.3) 100%);
+            transform: translateY(-3px);
+            box-shadow: 
+                0 0 25px rgba(0, 255, 255, 0.5),
+                0 0 50px rgba(138, 43, 226, 0.4),
+                0 8px 25px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+            text-shadow: 
+                0 0 12px rgba(0, 255, 255, 0.8),
+                0 0 24px rgba(0, 255, 255, 0.6);
+        }
+
+        /* Сенсорное управление - кнопки направления */
+        .touch-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            display: none; /* Скрыто по умолчанию, показывается на мобильных */
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .touch-controls {
+                display: block;
+            }
+            
+            .controls {
+                display: none; /* Скрываем текст про клавиатуру на мобильных */
+            }
+        }
+
+        .d-pad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 5px;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            pointer-events: all;
+        }
+
+        .d-pad-button {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid rgba(255, 255, 255, 0.5);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: none;
+            transition: all 0.1s;
+            box-shadow: 
+                0 0 15px rgba(0, 255, 255, 0.3),
+                0 4px 15px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .d-pad-button:active {
+            transform: scale(0.95);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 
+                0 0 20px rgba(0, 255, 255, 0.5),
+                0 2px 10px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .d-pad-button.up {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        .d-pad-button.down {
+            grid-column: 2;
+            grid-row: 3;
+        }
+
+        .d-pad-button.left {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        .d-pad-button.right {
+            grid-column: 3;
+            grid-row: 2;
+        }
+
+        .d-pad-button.center {
+            grid-column: 2;
+            grid-row: 2;
+            opacity: 0;
+            pointer-events: none;
+        }
