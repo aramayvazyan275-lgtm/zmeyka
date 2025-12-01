@@ -17,6 +17,7 @@ const canvas = document.getElementById('gameCanvas');
         const levelProgressElement = document.getElementById('levelProgress');
         const currentXPElement = document.getElementById('currentXP');
         const nextLevelXPElement = document.getElementById('nextLevelXP');
+        const levelContainerElement = document.querySelector('.level-container');
         const topProgressElement = document.getElementById('topProgress');
         const titleElement = document.querySelector('h1');
         const highScoreElement = document.getElementById('highScore');
@@ -1255,9 +1256,12 @@ const canvas = document.getElementById('gameCanvas');
                     gameOverElement.classList.add('show');
                 }
                 
-                // Показываем заголовок когда игра окончена
+                // Показываем заголовок и скрываем шкалу уровня когда игра окончена
                 if (titleElement) {
                     titleElement.classList.remove('hidden');
+                }
+                if (levelContainerElement) {
+                    levelContainerElement.classList.remove('visible');
                 }
             }, 300); // Задержка 300мс для эффекта исчезновения
             
@@ -1299,9 +1303,12 @@ const canvas = document.getElementById('gameCanvas');
                 pauseElement.classList.remove('show');
             }
             
-            // Показываем заголовок при перезапуске
+            // Скрываем заголовок и показываем шкалу уровня при старте игры
             if (titleElement) {
-                titleElement.classList.remove('hidden');
+                titleElement.classList.add('hidden');
+            }
+            if (levelContainerElement) {
+                levelContainerElement.classList.add('visible');
             }
             
             randomFood();
@@ -1384,20 +1391,24 @@ const canvas = document.getElementById('gameCanvas');
             if (e.key === 'ArrowUp' && dy !== 1) {
                 dx = 0;
                 dy = -1;
-                // Скрываем заголовок когда игра начинается
+                // Скрываем заголовок и показываем шкалу уровня когда игра начинается
                 if (titleElement) titleElement.classList.add('hidden');
+                if (levelContainerElement) levelContainerElement.classList.add('visible');
             } else if (e.key === 'ArrowDown' && dy !== -1) {
                 dx = 0;
                 dy = 1;
                 if (titleElement) titleElement.classList.add('hidden');
+                if (levelContainerElement) levelContainerElement.classList.add('visible');
             } else if (e.key === 'ArrowLeft' && dx !== 1) {
                 dx = -1;
                 dy = 0;
                 if (titleElement) titleElement.classList.add('hidden');
+                if (levelContainerElement) levelContainerElement.classList.add('visible');
             } else if (e.key === 'ArrowRight' && dx !== -1) {
                 dx = 1;
                 dy = 0;
                 if (titleElement) titleElement.classList.add('hidden');
+                if (levelContainerElement) levelContainerElement.classList.add('visible');
             }
         });
 
@@ -1437,8 +1448,9 @@ const canvas = document.getElementById('gameCanvas');
         function handleDirection(direction) {
             if (!gameRunning) return;
             
-            // Скрываем заголовок когда игра начинается
+            // Скрываем заголовок и показываем шкалу уровня когда игра начинается
             if (titleElement) titleElement.classList.add('hidden');
+            if (levelContainerElement) levelContainerElement.classList.add('visible');
             
             switch(direction) {
                 case 'up':
@@ -1501,11 +1513,13 @@ const canvas = document.getElementById('gameCanvas');
                         dx = 1;
                         dy = 0;
                         if (titleElement) titleElement.classList.add('hidden');
+                        if (levelContainerElement) levelContainerElement.classList.add('visible');
                     } else if (deltaX < 0 && dx !== 1) {
                         // Свайп влево
                         dx = -1;
                         dy = 0;
                         if (titleElement) titleElement.classList.add('hidden');
+                        if (levelContainerElement) levelContainerElement.classList.add('visible');
                     }
                 }
             } else {
@@ -1516,11 +1530,13 @@ const canvas = document.getElementById('gameCanvas');
                         dx = 0;
                         dy = 1;
                         if (titleElement) titleElement.classList.add('hidden');
+                        if (levelContainerElement) levelContainerElement.classList.add('visible');
                     } else if (deltaY < 0 && dy !== 1) {
                         // Свайп вверх
                         dx = 0;
                         dy = -1;
                         if (titleElement) titleElement.classList.add('hidden');
+                        if (levelContainerElement) levelContainerElement.classList.add('visible');
                     }
                 }
             }
@@ -1552,8 +1568,13 @@ const canvas = document.getElementById('gameCanvas');
             }
             const levelContainer = document.querySelector('.level-container');
             if (levelContainer) {
-                levelContainer.style.display = 'block';
-                levelContainer.style.visibility = 'visible';
+                // Используем классы для управления видимостью
+                if (gameRunning) {
+                    levelContainer.classList.add('visible');
+                    if (titleElement) {
+                        titleElement.classList.add('hidden');
+                    }
+                }
             }
             const topProgressBar = document.querySelector('.top-progress-bar');
             if (topProgressBar) {
