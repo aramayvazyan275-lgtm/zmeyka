@@ -729,29 +729,59 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 40px;
+            transform: translate(-50%, -50%) perspective(500px) rotateX(5deg);
+            background: linear-gradient(135deg, 
+                rgba(0, 191, 255, 0.15) 0%, 
+                rgba(138, 43, 226, 0.2) 50%, 
+                rgba(0, 191, 255, 0.15) 100%);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 2px solid rgba(0, 255, 255, 0.4);
+            border-top: 2px solid rgba(255, 255, 255, 0.6);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+            color: #00ffff;
+            padding: 40px 50px;
             border-radius: 20px;
             display: none;
             text-align: center;
             z-index: 100;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            animation: slideUp 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 0 20px rgba(0, 255, 255, 0.4),
+                0 0 40px rgba(138, 43, 226, 0.3),
+                0 20px 50px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+            transform-style: preserve-3d;
+            animation: slideUp 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275), gameOverGlow 3s ease-in-out infinite;
         }
 
         @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translate(-50%, -40%);
+                transform: translate(-50%, -40%) perspective(500px) rotateX(5deg);
             }
             to {
                 opacity: 1;
-                transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%) perspective(500px) rotateX(5deg);
+            }
+        }
+
+        @keyframes gameOverGlow {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 20px rgba(0, 255, 255, 0.4),
+                    0 0 40px rgba(138, 43, 226, 0.3),
+                    0 20px 50px rgba(0, 0, 0, 0.6),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 30px rgba(0, 255, 255, 0.6),
+                    0 0 60px rgba(138, 43, 226, 0.5),
+                    0 20px 50px rgba(0, 0, 0, 0.6),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
             }
         }
 
@@ -761,32 +791,86 @@
 
         .game-over h2 {
             margin-bottom: 20px;
-            font-size: 2em;
-            font-weight: 800;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            font-size: 2.5em;
+            font-weight: 900;
+            color: #00ffff;
+            text-shadow: 
+                0 0 10px rgba(0, 255, 255, 0.8),
+                0 0 20px rgba(0, 255, 255, 0.6),
+                0 0 30px rgba(0, 255, 255, 0.4),
+                0 0 40px rgba(138, 43, 226, 0.5),
+                0 4px 8px rgba(0, 0, 0, 0.8),
+                0 8px 16px rgba(0, 0, 0, 0.6);
+            letter-spacing: 2px;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        .game-over p {
+            font-size: 1.3em;
+            color: #00ffff;
+            margin-bottom: 30px;
+            text-shadow: 
+                0 0 8px rgba(0, 255, 255, 0.6),
+                0 0 16px rgba(0, 255, 255, 0.4),
+                0 2px 4px rgba(0, 0, 0, 0.8);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .game-over #finalScore {
+            color: #ff00ff;
+            text-shadow: 
+                0 0 10px rgba(255, 0, 255, 0.8),
+                0 0 20px rgba(255, 0, 255, 0.6),
+                0 0 30px rgba(255, 0, 255, 0.4);
+            font-weight: 900;
         }
 
         .game-over button {
-            background: linear-gradient(135deg, rgba(43, 108, 176, 0.5), rgba(49, 130, 206, 0.4));
+            background: linear-gradient(135deg, 
+                rgba(0, 191, 255, 0.2) 0%, 
+                rgba(138, 43, 226, 0.25) 50%, 
+                rgba(0, 191, 255, 0.2) 100%);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            border: none;
-            padding: 15px 30px;
+            border: 2px solid rgba(0, 255, 255, 0.4);
+            border-top: 2px solid rgba(255, 255, 255, 0.5);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+            color: #00ffff;
+            padding: 15px 35px;
             font-size: 1.2em;
-            font-weight: 600;
-            border-radius: 14px;
+            font-weight: 700;
+            border-radius: 16px;
             cursor: pointer;
             margin-top: 20px;
             transition: all 0.25s;
-            box-shadow: 0 6px 20px rgba(43, 108, 176, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            text-shadow: 
+                0 0 8px rgba(0, 255, 255, 0.6),
+                0 0 16px rgba(0, 255, 255, 0.4);
+            letter-spacing: 1px;
+            box-shadow: 
+                0 0 15px rgba(0, 255, 255, 0.3),
+                0 0 30px rgba(138, 43, 226, 0.2),
+                0 6px 20px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.3);
         }
 
         .game-over button:hover {
-            background: linear-gradient(135deg, rgba(43, 108, 176, 0.6), rgba(49, 130, 206, 0.5));
+            background: linear-gradient(135deg, 
+                rgba(0, 191, 255, 0.3) 0%, 
+                rgba(138, 43, 226, 0.35) 50%, 
+                rgba(0, 191, 255, 0.3) 100%);
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(43, 108, 176, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 0 25px rgba(0, 255, 255, 0.5),
+                0 0 50px rgba(138, 43, 226, 0.4),
+                0 8px 25px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+            text-shadow: 
+                0 0 12px rgba(0, 255, 255, 0.8),
+                0 0 24px rgba(0, 255, 255, 0.6);
         }
 
         /* Сенсорное управление - кнопки направления */
