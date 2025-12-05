@@ -55,10 +55,14 @@
         </div>
     </div>
 
-    <div class="game-over" id="gameOver">
+<div class="game-over" id="gameOver">
         <h2>Игра окончена!</h2>
         <p>Ваш счёт: <span id="finalScore">0</span></p>
-        <button onclick="restartGame()">Играть снова</button>
+        <div class="game-over-buttons">
+            <button onclick="restartGame()">Играть снова</button>
+            <button onclick="showRewardedAd()">Посмотреть рекламу за +50 очков</button>
+            <button onclick="showLeaderboard()">Таблица лидеров</button>
+        </div>
     </div>
 
     <!-- Сенсорное управление -->
@@ -73,5 +77,6 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="yandex-sdk.js"></script>
 </body>
 </html>
