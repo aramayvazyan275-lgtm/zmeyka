@@ -1228,6 +1228,10 @@ const canvas = document.getElementById('gameCanvas');
             
             // Обновляем максимальный счет
             updateHighScore();
+                        // Вызываем функцию Yandex SDK при окончании игры
+            if (window.YandexSDK && typeof window.YandexSDK.onGameOver === 'function') {
+                window.YandexSDK.onGameOver();
+            }
             
             // Запускаем анимацию исчезновения змейки
             snakeDisappearing = true;
@@ -1282,6 +1286,10 @@ const canvas = document.getElementById('gameCanvas');
             currentSkin = 0; // Сбрасываем скин при перезапуске
             snakeDisappearing = false; // Сбрасываем флаг исчезновения
             snakeDisappearStartTime = 0;
+                        // Вызываем функцию Yandex SDK при перезапуске игры
+            if (window.YandexSDK && typeof window.YandexSDK.onGameRestart === 'function') {
+                window.YandexSDK.onGameRestart();
+            }
             
             // Не показываем блок с инструкциями при перезапуске, если он был закрыт
             // (состояние сохраняется в localStorage)
