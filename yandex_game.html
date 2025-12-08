@@ -42,6 +42,11 @@
     </div>
 
     <script>
+        // Блокировка контекстного меню
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+        
         // Основной скрипт игры
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
