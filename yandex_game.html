@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Yandex Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="yandex-game" content="true">
+    <meta name="theme-color" content="#000000">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            touch-action: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        #game-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        #gameCanvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <!-- Ваша игра будет размещена здесь -->
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+    </div>
+
+    <script>
+        // Основной скрипт игры
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Адаптируем размеры под размеры экрана
+        function resizeCanvas() {
+            const container = document.getElementById('game-container');
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientHeight;
+        }
+        
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        
+        // Простой пример рисования
+        function draw() {
+            ctx.fillStyle = '#222';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#fff';
+            ctx.font = '20px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('Yandex Game', canvas.width/2, canvas.height/2);
+        }
+        
+        draw();
+        
+        // Инициализация Yandex Games SDK
+        function initYandexGame() {
+            if (window.YaGames) {
+                YaGames.init()
+                    .then(bridge => {
+                        console.log('Yandex Games SDK initialized');
+                        
+                        // Пример использования различных API
+                        // bridge.getStorage().then(storage => {
+                        //     // Работа с хранилищем
+                        // });
+                        
+                        // bridge.getLeaderboard().then(leaderboard => {
+                        //     // Работа с таблицей лидеров
+                        // });
+                        
+                        // bridge.getAds().then(ads => {
+                        //     // Работа с рекламой
+                        // });
+                        
+                        // bridge.getPayments().then(payments => {
+                        //     // Работа с платежами
+                        // });
+                    })
+                    .catch(error => {
+                        console.error('Failed to initialize Yandex Games SDK:', error);
+                    });
+            } else {
+                console.log('Yandex Games SDK not available in this environment');
+            }
+        }
+        
+        // Вызов инициализации после загрузки DOM
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initYandexGame);
+        } else {
+            initYandexGame();
+        }
+    </script>
+</body>
+</html>
